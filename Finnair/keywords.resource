@@ -4,9 +4,13 @@ ${Destination}               css:.bw-destination > .grey-600-text
 ${Destination_field_input}   css:#destination-input
 ${Top_one}                   css:.bw-transparent-border .ts-small
 ${Departure}                 css:.bw-departure > .grey-600-text
-${Start_date}                css:.bw-histogram-item:nth-child(7) > .bw-date
-${Date}                      css:.bw-month.nth-child(8) .bw-calendarBlock:nth-child(20) .flex-nogrow:nth-child(1)
-${End_date}                  css:.bw-hoverEnd > .bw.price
+${Elokuu}                    xpath://p[contains(.,'elo')]
+${Start_date_12}             xpath://div[8]/div[2]/div[20]/div/div
+${Arrival}                   xpath://div[6]/div[3]/div
+${End_date_15}               xpath://div[8]/div[2]/div[23]/div/div
+${Ready}                     css:.bw-modal-done
+${Price}                     xpath://div[8]/div/div[2]
+${Price_pln}                 Get Value         ${Price}
 
 *** Keywords ***
 Start
@@ -18,7 +22,10 @@ Destination
     Click Element     ${Destination}
     Click Element     ${Top_one}
     Click Element     ${Departure}
-    #Click Element     ${Start_date}
-    #Click Element     ${Date}
-    #Click Element     ${End_date}
-    #InputText          Helsinki
+    Click Element     ${Elokuu}
+    Click Element     ${Start_date_12}
+    Click Element     ${Ready}
+    Click Element     ${Arrival}
+    Click Element     ${End_date_15}
+    Click Element     ${Ready}
+    log                The price is ${Price_pln} pln.
